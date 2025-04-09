@@ -6,7 +6,7 @@
  */
 export interface McpToolResponse {
   content: {
-    type: 'text';
+    type: "text";
     text: string;
   }[];
   isError?: boolean;
@@ -68,9 +68,9 @@ export interface GmailSearchParams {
     maxResults?: number;
     pageToken?: string;
     includeHeaders?: boolean;
-    format?: 'full' | 'metadata' | 'minimal';
+    format?: "full" | "metadata" | "minimal";
     threadedView?: boolean;
-    sortOrder?: 'asc' | 'desc';
+    sortOrder?: "asc" | "desc";
   };
 }
 
@@ -191,8 +191,14 @@ export interface DriveFolderArgs extends BaseToolArguments {
 export interface DrivePermissionArgs extends BaseToolArguments {
   options: {
     fileId: string;
-    role: 'owner' | 'organizer' | 'fileOrganizer' | 'writer' | 'commenter' | 'reader';
-    type: 'user' | 'group' | 'domain' | 'anyone';
+    role:
+      | "owner"
+      | "organizer"
+      | "fileOrganizer"
+      | "writer"
+      | "commenter"
+      | "reader";
+    type: "user" | "group" | "domain" | "anyone";
     emailAddress?: string;
     domain?: string;
     allowFileDiscovery?: boolean;
@@ -222,8 +228,8 @@ export interface LabelColor {
  */
 export interface CreateLabelArgs extends BaseToolArguments {
   name: string;
-  messageListVisibility?: 'show' | 'hide';
-  labelListVisibility?: 'labelShow' | 'labelHide' | 'labelShowIfUnread';
+  messageListVisibility?: "show" | "hide";
+  labelListVisibility?: "labelShow" | "labelHide" | "labelShowIfUnread";
   color?: LabelColor;
 }
 
@@ -262,7 +268,7 @@ export interface LabelFilterCriteria {
   doesNotHaveWords?: string[];
   hasAttachment?: boolean;
   size?: {
-    operator: 'larger' | 'smaller';
+    operator: "larger" | "smaller";
     size: number;
   };
 }
@@ -290,7 +296,7 @@ export interface CreateLabelFilterArgs extends BaseToolArguments {
  * Parameters for getting label filters
  */
 export interface GetLabelFiltersArgs extends BaseToolArguments {
-  labelId?: string;  // Optional: get filters for specific label
+  labelId?: string; // Optional: get filters for specific label
 }
 
 /**
@@ -311,21 +317,35 @@ export interface DeleteLabelFilterArgs extends BaseToolArguments {
 
 // Attachment Management Types
 export interface ManageAttachmentParams extends BaseToolArguments {
-  action: 'download' | 'upload' | 'delete';
-  source: 'email' | 'calendar';
+  action: "download" | "upload" | "delete";
+  source: "email" | "calendar";
   messageId: string;
   filename: string;
-  content?: string;  // Required for upload action
+  content?: string; // Required for upload action
+}
+
+// Contacts Types
+/**
+ * Parameters for getting contacts
+ * @property email - The Google account email to access contacts from
+ * @property personFields - Comma-separated fields to include (e.g., "names,emailAddresses,phoneNumbers")
+ * @property pageSize - Maximum number of contacts to return (default: 100)
+ * @property pageToken - Page token for pagination
+ */
+export interface GetContactsParams extends BaseToolArguments {
+  personFields: string;
+  pageSize?: number;
+  pageToken?: string;
 }
 
 // Re-export consolidated management types
 export {
   ManageLabelParams,
   ManageLabelAssignmentParams,
-  ManageLabelFilterParams
-} from '../modules/gmail/services/label.js';
+  ManageLabelFilterParams,
+} from "../modules/gmail/services/label.js";
 
 export {
   ManageDraftParams,
-  DraftAction
-} from '../modules/gmail/services/draft.js';
+  DraftAction,
+} from "../modules/gmail/services/draft.js";
