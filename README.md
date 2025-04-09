@@ -46,7 +46,7 @@ Turn Google Drive from a file dump into your digital command center. Every docum
            "GOOGLE_CLIENT_SECRET",
            "-e",
            "LOG_MODE=strict",
-           "ghcr.io/aaronsb/google-workspace-mcp:latest"
+           "ghcr.io/pashvc/google-workspace-mcp:latest"
          ],
          "env": {
            "GOOGLE_CLIENT_ID": "123456789012-abcdef3gh1jklmn2pqrs4uvw5xyz6789.apps.googleusercontent.com",
@@ -59,10 +59,12 @@ Turn Google Drive from a file dump into your digital command center. Every docum
    }
    ```
 
-   Logging modes:
+> **Note**: This fork uses `ghcr.io/pashvc/google-workspace-mcp:latest` container image, which includes Google Contacts API support. The original repository uses `ghcr.io/aaronsb/google-workspace-mcp:latest`.
 
-   - `normal` (default): Uses appropriate console methods for each log level
-   - `strict`: Routes all non-JSON-RPC messages to stderr (recommended for Claude desktop)
+Logging modes:
+
+- `normal` (default): Uses appropriate console methods for each log level
+- `strict`: Routes all non-JSON-RPC messages to stderr (recommended for Claude desktop)
 
 3. Restart Cline/Claude
 
@@ -168,7 +170,7 @@ docker run -i --rm \
   -e GOOGLE_CLIENT_ID=123456789012-abcdef3gh1jklmn2pqrs4uvw5xyz6789.apps.googleusercontent.com \
   -e GOOGLE_CLIENT_SECRET=GOCSPX-abcdefghijklmnopqrstuvwxyz1234 \
   -e LOG_MODE=strict \
-  ghcr.io/aaronsb/google-workspace-mcp:latest
+  ghcr.io/pashvc/google-workspace-mcp:latest
 ```
 
 The server will automatically:
